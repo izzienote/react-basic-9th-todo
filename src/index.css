@@ -1,0 +1,8 @@
+/* 중앙정렬 템플릿 */
+.main-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
