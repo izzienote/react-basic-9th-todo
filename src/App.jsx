@@ -1,10 +1,12 @@
-import React from 'react'
-import TodoList from './components/TodoList'
+import React from "react";
+import TodoList from "./components/TodoList";
 
 const App = () => {
   return (
-    <main className='main-center'><TodoList/></main>
-  )
-}
+    <main className="main-center">
+      <TodoList />
+    </main>
+  );
+};
 
-export default App
+export default App;

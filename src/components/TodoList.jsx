@@ -1,4 +1,6 @@
-const todos = [
+import { useState } from "react";
+
+const SAMPLE_TODOS = [
   { id: 1, text: "Buy milk" },
   { id: 2, text: "Clean the house" },
   { id: 3, text: "Go for a run" },
@@ -12,13 +14,36 @@ const todos = [
 ];
 
 const TodoList = () => {
-  return (
-    <ul>
-      {todos.map(({id, text})=>(
-        <li key={id}>{text}</li>
-        ))}
-    </ul>
-  )
-}
+  const [todos, setTodos] = useState(SAMPLE_TODOS);
+  const [newTodo, setNewTodo] = useState("");
+  const handleInputChange = (e) => {
+    setNewTodo(e.target.value);
+  };
 
-export default TodoList
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!newTodo.trim()) {
+      return;
+    }
+
+    setTodos([{ id: crypto.randomUUID(), text: newTodo }, ...todos]);
+    setNewTodo("");
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <input value={newTodo} onChange={handleInputChange} type="text" />
+        <button type="submit">Add Todo</button>
+      </form>
+      <ul>
+        {todos.map((todo) => (
+          <li key={todo.id}>{todo.text}</li>
+        ))}
+      </ul>
+    </>
+  );
+};
+
+export default TodoList;
